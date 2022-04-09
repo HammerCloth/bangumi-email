@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="zh" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8" />
+  <title>邮件模板</title>
+</head>
+
+<body>
+Hello, this is your msg: <span th:text="${msg}"></span>
+<table>
+  <tr>
+    <th>日文名称</th>
+    <th>番剧官网</th>
+  </tr>
+  <tr th:each="data:${emailData}">
+    <td th:text="${data.bangumi.title}"></td>
+    <td th:text="${data.bangumi.officialSite}"></td>
+  </tr>
+</table>
+
+<div>
+  <div th:each="data:${emailData}">
+    <h1 th:text="${data.bangumi.title}"></h1>
+    番剧官网：<a th:text="${data.bangumi.officialSite}"></a><br>
+    <table>
+      <tr>
+        <th>语言</th>
+        <th>译名</th>
+      </tr>
+      <tr th:each="trans:${data.transTitles}">
+        <td th:text="${trans.transType}"></td>
+        <td th:text="${trans.transTitle}"></td>
+      </tr>
+    </table>
+  </div>
+  </div>
+</div>
+
+</body>
+</html>
