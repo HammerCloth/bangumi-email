@@ -11,7 +11,7 @@
  Target Server Version : 50650
  File Encoding         : 65001
 
- Date: 09/04/2022 21:58:52
+ Date: 09/04/2022 22:52:32
 */
 
 SET NAMES utf8mb4;
@@ -26,12 +26,12 @@ CREATE TABLE `bangumi` (
   `title` varchar(255) NOT NULL COMMENT '番剧日文名称',
   `type` varchar(255) DEFAULT NULL COMMENT '番剧类型',
   `lang` varchar(255) DEFAULT NULL COMMENT '番组语言',
-  `officialSite` varchar(255) DEFAULT NULL COMMENT '官网',
+  `official_site` varchar(255) DEFAULT NULL COMMENT '官网',
   `end_flag` int(1) DEFAULT NULL COMMENT '结束标记，0表示还没有结束1表示结束了',
   `begin` varchar(255) DEFAULT NULL COMMENT 'tv/web：番组开始时间；movie：上映日期；ova：首话发售时间 [required]',
   `end` varchar(255) DEFAULT NULL COMMENT 'tv/web：番组完结时间；movie：无意义；ova：则为最终话发售时间（未确定则置空） [required]',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='用于存储番剧基本信息';
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8 COMMENT='用于存储番剧基本信息';
 
 -- ----------------------------
 -- Table structure for site
@@ -56,7 +56,7 @@ DROP TABLE IF EXISTS `site_meta`;
 CREATE TABLE `site_meta` (
   `name` varchar(255) NOT NULL COMMENT '站点字段名',
   `title` varchar(255) DEFAULT NULL COMMENT '站点名称',
-  `urlTemplate` varchar(255) DEFAULT NULL COMMENT '站点url模版',
+  `url_template` varchar(255) DEFAULT NULL COMMENT '站点url模版',
   `regions` varchar(255) DEFAULT NULL COMMENT '站点区域限制，主要针对onAir类型的放送站点。如无该字段，表明该站点无区域限制',
   PRIMARY KEY (`name`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='站点元数据';
