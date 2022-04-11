@@ -11,5 +11,6 @@ spring:
     password: 123456
 
 
-
+bangumi-data:
+  url: https://cdn.jsdelivr.net/npm/bangumi-data@0.3/dist/data.json
 
