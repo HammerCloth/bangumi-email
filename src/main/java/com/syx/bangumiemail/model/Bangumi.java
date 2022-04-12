@@ -28,4 +28,6 @@ public class Bangumi {
     private int endFlag;//番剧是否完结，0表示没有完结
     private String begin;//番剧开始时间
     private String end;//番剧结束时间
+    private String broadcast;//番剧发送时间
+    private String comment;//番剧备注
 }

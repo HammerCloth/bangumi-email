@@ -5,7 +5,7 @@ server:
 spring:
   datasource:
     type: com.alibaba.druid.pool.DruidDataSource
-    driver-class-name: com.mysql.jdbc.Driver
+    driver-class-name: com.mysql.cj.jdbc.Driver
     url: jdbc:mysql://43.138.25.60:3306/bangumi?useUnicode=true&characterEncoding=utf-8
     username: Bangumi
     password: 123456

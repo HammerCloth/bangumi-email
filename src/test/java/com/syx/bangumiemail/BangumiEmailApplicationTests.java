@@ -1,10 +1,12 @@
 package com.syx.bangumiemail;
 
+import com.alibaba.fastjson.JSON;
 import com.syx.bangumiemail.mapper.BangumiMapper;
 import com.syx.bangumiemail.model.Bangumi;
 import com.syx.bangumiemail.model.Site;
 import com.syx.bangumiemail.model.SiteMeta;
 import com.syx.bangumiemail.service.BangumiService;
+import com.syx.bangumiemail.service.BaseService;
 import com.syx.bangumiemail.service.HttpService;
 import com.syx.bangumiemail.service.SiteMetaService;
 import com.syx.bangumiemail.util.Parse;
@@ -28,6 +30,8 @@ class BangumiEmailApplicationTests {
     private Parse p;
     @Autowired
     private SiteMetaService siteMetaService;
+    @Autowired
+    private BaseService baseService;
     @Test
     void contextLoads() {
         Bangumi bangumi = new Bangumi();
@@ -47,6 +51,7 @@ class BangumiEmailApplicationTests {
     @Test
     void testHttp(){
         String resourcesJson = hs.getResourcesJson();
+        System.out.println(resourcesJson);
         HashMap<String, String> map = p.separateMetaAndIterms(resourcesJson);
         List<SiteMeta> siteMeta = p.parseSiteMeta(map.get("siteMeta"));
         for(SiteMeta i:siteMeta){
@@ -55,6 +60,28 @@ class BangumiEmailApplicationTests {
         siteMetaService.saveOrUpdateBatch(siteMeta);
     }
 
+    @Test
+    void testa(){
+        String resourcesJson = hs.getResourcesJson();
+        HashMap<String, String> map = p.separateMetaAndIterms(resourcesJson);
+        String items = map.get("items");
+        for (String s : JSON.parseArray(items, String.class)) {
+            for (Site site : p.parseItemToSite(s)) {
+                System.out.println(site.toString());
+            }
+        }
+
+    }
+
+    @Test
+    void testb(){
+        baseService.creatDB();
+    }
+
+    @Test
+    void testc(){
+        baseService.clearDB();
+    }
 
 
 

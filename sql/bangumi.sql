@@ -11,7 +11,7 @@
  Target Server Version : 50650
  File Encoding         : 65001
 
- Date: 12/04/2022 00:39:32
+ Date: 12/04/2022 21:10:55
 */
 
 SET NAMES utf8mb4;
@@ -31,8 +31,9 @@ CREATE TABLE `bangumi` (
   `begin` varchar(255) DEFAULT NULL COMMENT 'tv/web：番组开始时间；movie：上映日期；ova：首话发售时间 [required]',
   `end` varchar(255) DEFAULT NULL COMMENT 'tv/web：番组完结时间；movie：无意义；ova：则为最终话发售时间（未确定则置空） [required]',
   `broadcast` varchar(255) DEFAULT NULL COMMENT '播放规律',
+  `comment` varchar(255) DEFAULT NULL COMMENT '备注',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8 COMMENT='用于存储番剧基本信息';
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8 COMMENT='用于存储番剧基本信息';
 
 -- ----------------------------
 -- Table structure for site
