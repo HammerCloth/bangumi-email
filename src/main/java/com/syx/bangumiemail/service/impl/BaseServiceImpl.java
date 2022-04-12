@@ -1,6 +1,7 @@
 package com.syx.bangumiemail.service.impl;
 
 import com.syx.bangumiemail.mapper.BangumiMapper;
+import com.syx.bangumiemail.mapper.SiteMapper;
 import com.syx.bangumiemail.mapper.TransTitleMapper;
 import com.syx.bangumiemail.model.Bangumi;
 import com.syx.bangumiemail.model.Site;
@@ -36,16 +37,20 @@ public class BaseServiceImpl implements BaseService {
     @Autowired
     private TransTitleService transTitleService;
     @Autowired
+    private TransTitleMapper transTitleMapper;
+    @Autowired
     private SiteService siteService;
+    @Autowired
+    private SiteMapper siteMapper;
     @Override
-    @Transactional
+
     public void creatDB() {
         String resourcesJson = httpService.getResourcesJson();
         HashMap<String, String> metaAndIterms = parse.separateMetaAndIterms(resourcesJson);
         List<SiteMeta> siteMeta = parse.parseSiteMeta(metaAndIterms.get("siteMeta"));
         siteMetaService.saveOrUpdateBatch(siteMeta);
         List<String> strings = parse.parseItems(metaAndIterms.get("items"));
-        List<TransTitle> TTlist = new ArrayList<>();
+        List<TransTitle> tlist = new ArrayList<>();
         List<Site> siteList = new ArrayList<>();
         for(String item:strings){
             Bangumi bangumi = parse.parseItemToBangumi(item);
@@ -53,13 +58,15 @@ public class BaseServiceImpl implements BaseService {
             int bangumiId = bangumi.getId();
             for (TransTitle transTitle : parse.parseItermToTransTitle(item)) {
                 transTitle.setBangumiId(bangumiId);
-                TTlist.add(transTitle);
+                tlist.add(transTitle);
             }
             for (Site site : parse.parseItemToSite(item)) {
                 site.setBangumiId(bangumiId);
                 siteList.add(site);
             }
         }
+        siteService.saveBatch(siteList);
+        transTitleService.saveBatch(tlist);
 
     }
 
