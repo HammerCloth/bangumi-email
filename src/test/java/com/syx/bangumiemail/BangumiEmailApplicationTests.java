@@ -5,14 +5,13 @@ import com.syx.bangumiemail.mapper.BangumiMapper;
 import com.syx.bangumiemail.model.Bangumi;
 import com.syx.bangumiemail.model.Site;
 import com.syx.bangumiemail.model.SiteMeta;
-import com.syx.bangumiemail.service.BangumiService;
-import com.syx.bangumiemail.service.BaseService;
-import com.syx.bangumiemail.service.HttpService;
-import com.syx.bangumiemail.service.SiteMetaService;
+import com.syx.bangumiemail.service.*;
 import com.syx.bangumiemail.util.Parse;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.mail.MailSender;
+import org.springframework.mail.SimpleMailMessage;
 
 import java.util.HashMap;
 import java.util.List;
@@ -81,6 +80,28 @@ class BangumiEmailApplicationTests {
     @Test
     void testc(){
         baseService.clearDB();
+    }
+
+
+    @Autowired
+    private MailSender mailSender;
+    @Test
+    void testMail(){
+        SimpleMailMessage mail = new SimpleMailMessage();
+        mail.setFrom("bangumiEmail@163.com");
+        mail.setTo("18552541076@163.com");
+        mail.setSubject("Test");
+        mail.setText("testtest");
+        mailSender.send(mail);
+
+    }
+
+    @Autowired
+    private MailService mailService;
+    @Test
+    void testav(){
+        mailService.sendSimpleMessage("简单的邮件","jiandande youjian ",new String[]{"424193726@qq.com","18552541076@163.com"});
+        mailService.sentHTML("简单的邮件","jiandande youjian ",new String[]{"424193726@qq.com","18552541076@163.com"});
     }
 
 

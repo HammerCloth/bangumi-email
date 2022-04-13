@@ -37,13 +37,9 @@ public class BaseServiceImpl implements BaseService {
     @Autowired
     private TransTitleService transTitleService;
     @Autowired
-    private TransTitleMapper transTitleMapper;
-    @Autowired
     private SiteService siteService;
-    @Autowired
-    private SiteMapper siteMapper;
-    @Override
 
+    @Override
     public void creatDB() {
         String resourcesJson = httpService.getResourcesJson();
         HashMap<String, String> metaAndIterms = parse.separateMetaAndIterms(resourcesJson);
