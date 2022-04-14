@@ -3,15 +3,18 @@ package com.syx.bangumiemail;
 import com.alibaba.fastjson.JSON;
 import com.syx.bangumiemail.mapper.BangumiMapper;
 import com.syx.bangumiemail.model.Bangumi;
+import com.syx.bangumiemail.model.EmailData;
 import com.syx.bangumiemail.model.Site;
 import com.syx.bangumiemail.model.SiteMeta;
 import com.syx.bangumiemail.service.*;
 import com.syx.bangumiemail.util.Parse;
+import org.joda.time.DateTime;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.mail.MailSender;
 import org.springframework.mail.SimpleMailMessage;
+import org.springframework.web.servlet.tags.EditorAwareTag;
 
 import java.util.HashMap;
 import java.util.List;
@@ -103,7 +106,21 @@ class BangumiEmailApplicationTests {
         mailService.sendSimpleMessage("简单的邮件","jiandande youjian ",new String[]{"424193726@qq.com","18552541076@163.com"});
         mailService.sentHTML("简单的邮件","jiandande youjian ",new String[]{"424193726@qq.com","18552541076@163.com"});
     }
+    @Autowired
+    private EmailDataService ems;
+    @Test
+    void  testsx(){
+        List<EmailData> allNoEnd = ems.getAllNoEnd();
+        System.out.println(allNoEnd.size());
+        allNoEnd.forEach(System.out::println);
+    }
 
+    @Test
+    void testTime(){
+        String time = new String("2022-04-14T15:00:00.000Z");
+        DateTime dateTime = new DateTime(time);
+
+    }
 
 
 }
