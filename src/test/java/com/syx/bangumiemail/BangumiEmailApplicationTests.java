@@ -8,7 +8,11 @@ import com.syx.bangumiemail.model.Site;
 import com.syx.bangumiemail.model.SiteMeta;
 import com.syx.bangumiemail.service.*;
 import com.syx.bangumiemail.util.Parse;
+import com.syx.bangumiemail.util.Time;
 import org.joda.time.DateTime;
+import org.joda.time.MutableDateTime;
+import org.joda.time.format.DateTimeFormatter;
+import org.joda.time.format.ISODateTimeFormat;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -117,8 +121,35 @@ class BangumiEmailApplicationTests {
 
     @Test
     void testTime(){
-        String time = new String("2022-04-14T15:00:00.000Z");
-        DateTime dateTime = new DateTime(time);
+        String time = new String("R/2022-04-14T15:00:00.000Z/P0D");
+        System.out.println(time.substring(29));
+        System.out.println(time.substring(28,29));
+        System.out.println(time.substring(0, 2));
+        System.out.println(time.substring(2, 26));
+        /*DateTimeFormatter fmt = ISODateTimeFormat.dateTime();
+        MutableDateTime mutableDateTime = fmt.parseMutableDateTime(time);
+        System.out.println(fmt.print(mutableDateTime));
+        mutableDateTime.addDays(7);
+        System.out.println(fmt.print(mutableDateTime));*/
+    }
+
+    @Test
+    void testm(){
+        MutableDateTime mutableDateTime = new MutableDateTime();
+        DateTimeFormatter fmt = ISODateTimeFormat.dateTime();
+        System.out.println(fmt.print(mutableDateTime));
+    }
+
+    @Autowired
+    private Time time;
+    @Test
+    void testA(){
+        String time1 = new String("R/2022-04-14T15:00:00.000Z/P0D");
+        String time2 = new String("R/2022-04-14T15:00:00.000Z/P4D");
+        String time3 = new String("R/2022-04-14T15:00:00.000Z/P7D");
+        System.out.println(time.isBroadcastToday(time1));
+        System.out.println(time.isBroadcastToday(time2));
+        System.out.println(time.isBroadcastToday(time3));
 
     }
 
