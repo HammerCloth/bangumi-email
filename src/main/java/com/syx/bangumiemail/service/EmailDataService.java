@@ -17,4 +17,9 @@ public interface EmailDataService {
      * 获取没有结束到番剧列表
      */
     List<EmailData> getAllNoEnd();
+
+    /**
+     * 获取今日更新的番剧列表
+     */
+    List<EmailData> getAllNoEndToday();
 }

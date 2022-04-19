@@ -85,8 +85,8 @@ public class Parse {
             List<String> strings = JSON.parseArray(titleMap.get(i), String.class);
             for (String s : strings) {
                 TransTitle title = new TransTitle();
-                title.setTrans_title(s);
-                title.setTrans_type(i);
+                title.setTransTitle(s);
+                title.setTransType(i);
                 list.add(title);
             }
         }

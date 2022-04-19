@@ -1,5 +1,7 @@
 package com.syx.bangumiemail.service.impl;
 
+import com.syx.bangumiemail.model.EmailData;
+import com.syx.bangumiemail.service.EmailDataService;
 import com.syx.bangumiemail.service.MailService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
@@ -14,6 +16,7 @@ import org.thymeleaf.context.Context;
 
 import javax.mail.MessagingException;
 import javax.mail.internet.MimeMessage;
+import java.util.List;
 
 /**
  * @ClassName MailServiceImpl
@@ -30,6 +33,8 @@ public class MailServiceImpl implements MailService {
     private JavaMailSender sender;
     @Autowired
     private TemplateEngine templateEngine;
+    @Autowired
+    private EmailDataService emailDataService;
     @Override
     public void sendSimpleMessage(String subject, String msg, String[] emails) {
         try{
@@ -57,6 +62,9 @@ public class MailServiceImpl implements MailService {
             //初始化模版
             Context context = new Context();
             context.setVariable("msg",msg);
+            List<EmailData> data = emailDataService.getAllNoEndToday();
+            data.forEach(System.out::println);
+            context.setVariable("emailData",data);
             String emailTemplate = templateEngine.process("emailTemplate", context);
             helper.setText(emailTemplate,true);
             sender.send(mimeMessage);

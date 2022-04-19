@@ -22,6 +22,6 @@ public class TransTitle {
     @TableId(type = IdType.AUTO)
     private int id;//自增主键
     private int bangumiId;//番剧id
-    private String trans_type;//翻译类型
-    private String trans_title;//翻译名称
+    private String transType;//翻译类型
+    private String transTitle;//翻译名称
 }

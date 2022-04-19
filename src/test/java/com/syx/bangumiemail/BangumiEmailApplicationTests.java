@@ -1,11 +1,9 @@
 package com.syx.bangumiemail;
 
 import com.alibaba.fastjson.JSON;
+import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.syx.bangumiemail.mapper.BangumiMapper;
-import com.syx.bangumiemail.model.Bangumi;
-import com.syx.bangumiemail.model.EmailData;
-import com.syx.bangumiemail.model.Site;
-import com.syx.bangumiemail.model.SiteMeta;
+import com.syx.bangumiemail.model.*;
 import com.syx.bangumiemail.service.*;
 import com.syx.bangumiemail.util.Parse;
 import com.syx.bangumiemail.util.Time;
@@ -107,8 +105,8 @@ class BangumiEmailApplicationTests {
     private MailService mailService;
     @Test
     void testav(){
-        mailService.sendSimpleMessage("简单的邮件","jiandande youjian ",new String[]{"424193726@qq.com","18552541076@163.com"});
-        mailService.sentHTML("简单的邮件","jiandande youjian ",new String[]{"424193726@qq.com","18552541076@163.com"});
+        //mailService.sendSimpleMessage("简单的邮件","jiandande youjian ",new String[]{"424193726@qq.com","18552541076@163.com"});
+        mailService.sentHTML("简单的邮件","jiandande youjian ",new String[]{"424193726@qq.com"});
     }
     @Autowired
     private EmailDataService ems;
@@ -142,14 +140,17 @@ class BangumiEmailApplicationTests {
 
     @Autowired
     private Time time;
+    @Autowired
+    private TransTitleService transTitleService;
     @Test
     void testA(){
-        String time1 = new String("R/2022-04-14T15:00:00.000Z/P0D");
-        String time2 = new String("R/2022-04-14T15:00:00.000Z/P4D");
-        String time3 = new String("R/2022-04-14T15:00:00.000Z/P7D");
-        System.out.println(time.isBroadcastToday(time1));
-        System.out.println(time.isBroadcastToday(time2));
-        System.out.println(time.isBroadcastToday(time3));
+//        String time1 = new String("R/2022-04-14T15:00:00.000Z/P0D");
+//        String time2 = new String("R/2022-04-14T15:00:00.000Z/P4D");
+//        String time3 = new String("R/2022-04-14T15:00:00.000Z/P7D");
+//        System.out.println(time.isBroadcastToday(time1));
+//        System.out.println(time.isBroadcastToday(time2));
+//        System.out.println(time.isBroadcastToday(time3));
+        System.out.println(transTitleService.list(new QueryWrapper<TransTitle>().eq("id", 18462)));
 
     }
 
