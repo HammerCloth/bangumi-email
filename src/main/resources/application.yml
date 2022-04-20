@@ -1,20 +1,4 @@
-server:
-  port: 8080
-
-
 spring:
-  datasource:
-    type: com.alibaba.druid.pool.DruidDataSource
-    driver-class-name: com.mysql.cj.jdbc.Driver
-    url: jdbc:mysql://43.138.25.60:3306/bangumi?useUnicode=true&characterEncoding=utf-8
-    username: Bangumi
-    password: 123456
-  mail:
-    host: 'smtp.163.com'
-    username: 'bangumiEmail@163.com'
-    password: 'DLDVMIRIVDTPMFTS'
-
-
-bangumi-data:
-  url: https://cdn.jsdelivr.net/npm/bangumi-data@0.3/dist/data.json
+  profiles:
+    active: dev
 
