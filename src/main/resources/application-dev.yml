@@ -16,4 +16,4 @@ spring:
 
 
 bangumi-data:
-  url: https://cdn.jsdelivr.net/npm/bangumi-data@0.3/dist/data.json
+  url: https://unpkg.com/bangumi-data@0.3.96/dist/data.json
